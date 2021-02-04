@@ -1,0 +1,68 @@
+---
+application:
+  about:
+    service: Seckill
+    version: 版本 1.0.1
+    explanation: 本系统目前只适用于JD<br>感谢已经因众所周知的原因找不到的原作者和优化者们<br>Proletarier aller Länder, vereinigt euch!
+    copyright: Copyright (C) 2021 The WS Ltd.
+  help:
+    top: "# 帮助\n\n---\n"
+    left: "## 1. 商品维护\n\n- 对要抢购的商品进行维护，系统会在本地保存维护之后的商品信息，下次打开时自动加载。\n\n### 1.1 商品信息\n- 商品编号:\n  - 商品对应的URL的编号。\n  - 如某商品的URL是 https://a.b.com/123.html ，则该商品的编号即为 123。\n\n- 抢购数量\n  - 每次抢购的最大数量，一般为 1，酒类商品可能为 2。\n  - 目前系统最大可调范围为 1~2。\n\n- 抢购时间\n  - 开始抢购的时间，建议事先同步本机的互联网时间，并设置提前300~500毫秒。\n  - 如某商品的抢购时间为 10:00:00，则可以填写 09:59:59.800。\n\n- 商品名称\n  - 商品的名称，用于标识本条商品，在系统中无实际意义。\n\n### 1.2 维护操作\n- 增加: 增加商品\n- 修改: 对选中的商品进行修改\n- 删除: 对选中的商品进行删除\n- 激活\n  - 对选中的商品进行激活，只有某个商品被激活，系统才会认定抢购该商品。\n  - 激活后的商品如进行了修改，需要重新激活。"
+    right: "## 2. 登录商场\n- 扫码登录\n  - 获取二维码进行扫码登录，登录成功后会在本地保存对应的cookie。\n- cookie登录\n  - 系统启动时会检查本地是否保存cookie，并判断如cookie还在有效期内，则无需重新登录。\n\n## 3. 预约抢购\n- 预约\n  - 对激活的商品进行预约\n- 抢购\n  - 对激活的商品进行抢购\n提前点开\"抢购\"按钮，系统会在设置的抢购时间到达时自动抢购。\n  - 如抢购成功，则会给出成功提示\n  - 否则会一直抢购至时长用尽\n  - 目前系统持续抢购时间为5分钟，不可设置。\n\n## 4. 说明\n- ~~本系统成功抢购到毛胎飞天、按摩店 5950X、极佳3080各种雕等爆品。~~\n- 商城的系统也在不断更新维护，所以不能保证当前时刻仍然可用。\n- 本系统仍然是以探索 **Python**、**PyQT5** 等技术为唯一目的。"
+  main:
+    article:
+      title:
+        -
+          key: id
+          value: 商品编号
+        -
+          key: num
+          value: 抢购数量
+        -
+          key: time
+          value: 抢购时间
+        -
+          key: name
+          value: 商品名称
+      path: data
+      file: article.data
+    default_image_file: resource/image/default.png
+    qrcoding_image_file: resource/image/qrcoding.gif
+    reserving_image_file: resource/image/reserving.gif
+    seckilling_image_file: resource/image/seckilling.gif
+    celebrating_image_file: resource/image/celebrating.gif
+    seckillsp_image_file: resource/image/seckillsp.png
+    login_success_image_file: resource/image/logined.png
+    login_failed_image_file: resource/image/loginer.png
+    reserve_success_iamge_file: resource/image/reserved.png
+    reserve_failed_iamge_file: resource/image/reserver.png
+    celebrating_sound_file: resource/sound/celebrating.mp3
+
+
+seckill:
+  cookie_path: cookies
+  qr_code_file: qrcode.png
+  continue_time: 5
+  default_user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36
+  eidfp_file: tools/eidfp.html
+
+
+logging:
+  version: 1
+  disable_existing_loggers: false
+  formatters:
+    default:
+      format: "[%(asctime)s] [%(process)5d] [%(thread)5d] [%(filename)12s] [line:%(lineno)4d] [%(levelname)-6s] %(message)s"
+  handlers:
+    default:
+      level: DEBUG
+      formatter: default
+      class: logging.FileHandler
+      encoding: utf8
+      filename: log/FILE.log
+  loggers:
+    default:
+      handlers:
+        - default
+      level: DEBUG
+      propagate: false

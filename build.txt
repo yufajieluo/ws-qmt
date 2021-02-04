@@ -1,0 +1,6 @@
+venv\Scripts\pyinstaller.exe -D -w --icon=ui\image\favicon.ico main.py
+venv\Scripts\pyinstaller.exe main.spec
+
+('config', 'config'),
+('resource', 'resource'),
+('tools', 'tools')
